@@ -1,12 +1,68 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
+import { createStore } from "redux";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const Actions = {
+    register: "REGISTER_FLIGHT"
+};
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+//create Action
+function registerFlight(flight) {
+    return {
+    type: Actions.register,
+    flightInfo: {
+        /* fn: flight.fn,
+        des: flight.des,
+        dep: flight.dep,
+        date: flight.date */
+        ...flight
+    }
+    };
+}
+
+const fl = {
+    fn: "",
+    des: "",
+    dep: "",
+    date: ""
+};
+
+//create reducer
+function reducer(state = fl, action) {
+    switch (action.type) {
+    case "REGISTER_FLIGHT":
+        return (state = {
+        flight: {
+            fn: action.flightInfo.fn,
+            des: action.flightInfo.des,
+            dep: action.flightInfo.dep,
+            date: action.flightInfo.date
+        }
+        });
+
+    default:
+        return state;
+    }
+}
+
+//create store
+const store = createStore(reducer);
+
+//method for sending to component for dispatching action register_flight
+const dispatchRegisterFlight = flit => {
+    store.dispatch(registerFlight(flit));
+    console.log(store.getState());
+};
+
+const Root = document.getElementById("root");
+const render = () => {
+    ReactDOM.render(
+    <App dispatchRegisterFlight={dispatchRegisterFlight} />,
+    Root
+    );
+};
+
+render();
+//subscribe render method with store container
+store.subscribe(render);
