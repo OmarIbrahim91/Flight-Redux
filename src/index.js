@@ -1,10 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { createStore } from "redux";
+import { createStore} from "redux";
+import { applyMiddleware} from "redux";
+
+import {createLogger} from 'redux-logger';
+
+const logger = createLogger();
 
 const Actions = {
     register: "REGISTER_FLIGHT"
+    
 };
 
 //create Action
@@ -22,10 +28,7 @@ function registerFlight(flight) {
 }
 
 const fl = {
-    fn: "",
-    des: "",
-    dep: "",
-    date: ""
+    flight:[]
 };
 
 //create reducer
@@ -33,12 +36,12 @@ function reducer(state = fl, action) {
     switch (action.type) {
     case "REGISTER_FLIGHT":
         return (state = {
-        flight: {
+        flight: [...state.flight,{
             fn: action.flightInfo.fn,
             des: action.flightInfo.des,
             dep: action.flightInfo.dep,
             date: action.flightInfo.date
-        }
+        }]
         });
 
     default:
@@ -47,7 +50,7 @@ function reducer(state = fl, action) {
 }
 
 //create store
-const store = createStore(reducer);
+const store = createStore(reducer,applyMiddleware(logger));
 
 //method for sending to component for dispatching action register_flight
 const dispatchRegisterFlight = flit => {
@@ -57,8 +60,9 @@ const dispatchRegisterFlight = flit => {
 
 const Root = document.getElementById("root");
 const render = () => {
+    var flights = store.getState().flight
     ReactDOM.render(
-    <App dispatchRegisterFlight={dispatchRegisterFlight} />,
+    <App dispatchRegisterFlight={dispatchRegisterFlight} flights={flights}/>,
     Root
     );
 };
