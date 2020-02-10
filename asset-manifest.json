@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/Flight-Redux/static/js/main.1cb06e02.chunk.js",
+    "main.js.map": "/Flight-Redux/static/js/main.1cb06e02.chunk.js.map",
+    "runtime-main.js": "/Flight-Redux/static/js/runtime-main.23d80090.js",
+    "runtime-main.js.map": "/Flight-Redux/static/js/runtime-main.23d80090.js.map",
+    "static/js/2.566f2764.chunk.js": "/Flight-Redux/static/js/2.566f2764.chunk.js",
+    "static/js/2.566f2764.chunk.js.map": "/Flight-Redux/static/js/2.566f2764.chunk.js.map",
+    "index.html": "/Flight-Redux/index.html",
+    "precache-manifest.3bfbf15570668692296c24843807b575.js": "/Flight-Redux/precache-manifest.3bfbf15570668692296c24843807b575.js",
+    "service-worker.js": "/Flight-Redux/service-worker.js",
+    "static/js/2.566f2764.chunk.js.LICENSE.txt": "/Flight-Redux/static/js/2.566f2764.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.23d80090.js",
+    "static/js/2.566f2764.chunk.js",
+    "static/js/main.1cb06e02.chunk.js"
+  ]
+}
